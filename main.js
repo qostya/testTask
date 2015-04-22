@@ -36,6 +36,8 @@
     };
 
     CardsApp.addCard = function (type) {
+        type = type || 'narrow';
+
         this.cards.push(
             {
                 type: type
