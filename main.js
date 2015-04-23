@@ -3,8 +3,8 @@
     var CardsApp = {};
 
     CardsApp.refreshViewCards = function (arg) {
-        var cardsHolder = document.getElementById('cards-holder');
         arg = arg || data;
+        var cardsHolder = document.getElementById('cards-holder');
         cardsHolder.innerHTML = '';
         for ( var i = 0; arg.length > i; i++ ) {
             var card = document.createElement('li');
@@ -41,14 +41,14 @@
             }
         );
         this.refreshViewCards();
-        CardsApp.historyApi.add();
+        this.historyApi.add();
     };
 
     CardsApp.removeCard = function () {
         if( data.length > 0 ) {
             var cardsLength = data.length;
             data.splice(cardsLength - 1, 1);
-            CardsApp.historyApi.add();
+            this.historyApi.add();
             this.refreshViewCards();
         }
     };
