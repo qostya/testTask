@@ -2,6 +2,7 @@ body {
     padding: 0;
     margin: 0;
     background: #fff;
+    font-family: sans-serif;
 }
 
 ul {
@@ -20,9 +21,9 @@ li {
     background: #f6f2de;
     padding: 20px 30px;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 
 .cards:hover {
@@ -31,6 +32,7 @@ li {
 
 .cards-holder {
     position: relative;
+    counter-reset: cards;
 }
 
 .cards.cards-disable-hover {
@@ -49,8 +51,31 @@ li {
 
 .card:first-child {
     -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+       -moz-box-shadow: 0 0 8px rgba(0,0,0,0.2);
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+.card:before {
+    counter-increment: cards;
+    content: counter(cards);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+
+    width: 50px;
+    height: 50px;
+    font-size: 26px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 600;
+    border: 2px solid;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+            border-radius: 50%;
 }
 
 .card-wide.card-first {
@@ -61,8 +86,8 @@ li {
 .card-first {
     left: 40px;
     -webkit-box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+       -moz-box-shadow: 0 0 8px rgba(0,0,0,0.2);
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
 

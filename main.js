@@ -8,9 +8,6 @@
         cardsHolder.innerHTML = '';
         for ( var i = 0; arg.length > i; i++ ) {
             var card = document.createElement('li');
-            var cardText = document.createTextNode( arg[i].type );
-            card.appendChild( cardText );
-
             card.className += 'card card-' + arg[i].type;
             if ( i === arg.length - 1 && arg.length != 1 ) {// добавление сдвига вправо, если карточек больше 1
                 card.className += ' card-first';
