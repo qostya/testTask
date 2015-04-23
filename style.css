@@ -54,6 +54,7 @@ li {
        -moz-box-shadow: 0 0 8px rgba(0,0,0,0.2);
             box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
+
 .card:before {
     counter-increment: cards;
     content: counter(cards);
@@ -78,7 +79,7 @@ li {
             border-radius: 50%;
 }
 
-.card-wide.card-first {
+.card-wide.card-first, .card:only-child.card-wide {
     width: 100%;
     max-width: 960px;
 }

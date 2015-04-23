@@ -5,13 +5,13 @@
     CardsApp.refreshViewCards = function (arg) {
         arg = arg || data; // аргумент используется в основном history api для передачи актуального состояния массива
         var cardsHolder = document.getElementById('cards-holder'),
-            cardsSafer = document.createDocumentFragment();
+            cardsSafer = document.createDocumentFragment(); // для кэша html карточек
         cardsHolder.innerHTML = ''; // удаляем старые карточки при обновлении массива
         for ( var i = 0; arg.length > i; i++ ) {
             var card = document.createElement('li'); // добавляем элемент списка для карточки
             card.className += 'card card-' + arg[i].type;
-            if ( i === arg.length - 1 && arg.length != 1 ) { // добавление сдвига вправо для последней
-                card.className += ' card-first';             // карточки, если их больше 1
+            if ( i === arg.length - 1 && arg.length != 1 ) { // добавление сдвига вправо для последней карточки, если их больше 1
+                card.className += ' card-first';
             }
             cardsSafer.appendChild(card); // кэшируем для лучшего рендеринга
         }
