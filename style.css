@@ -15,8 +15,11 @@ li {
 }
 
 .cards {
-    width: 1220px;
-    height: 760px;
+    box-sizing: border-box;/* но border-box + min/max-width = глюки в разных браузерах */
+    width: 90%;
+    max-width: 1280px;
+    min-width: 1060px;
+    height: 800px;
     margin: 60px auto;
     background: #f6f2de;
     padding: 20px 30px;
