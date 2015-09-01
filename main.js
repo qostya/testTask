@@ -1,23 +1,37 @@
 (function (data) {
     'use strict';
     var CardsApp = {};
+    
+    CardsApp.init = function() {
+        CardsApp.editCards();
+        CardsApp.refreshViewCards();
+        CardsApp.hoverCards();
+        
+        if (window.history) {
+            CardsApp.historyApi.add();
+            CardsApp.historyApi.detectChanges();
+        }
+    };
 
     CardsApp.refreshViewCards = function (arg) {
         arg = arg || data; // аргумент используется в основном history api для передачи актуального состояния массива
         var cardsHolder = document.getElementById('cards-holder'),
-            cardsSafer = document.createDocumentFragment(); // для кэша html карточек
+            cardsSafer = document.createDocumentFragment(),
+            card; // для кэша html карточек
         cardsHolder.innerHTML = ''; // удаляем старые карточки при обновлении массива
-        for ( var i = 0; arg.length > i; i++ ) {
-            var card = document.createElement('li'); // добавляем элемент списка для карточки
+        
+        for (var i = 0, l = arg.length; l > i; i++) {
+            card = document.createElement('li'); // добавляем элемент списка для карточки
             card.className += 'card card-' + arg[i].type;
-            if ( i === arg.length - 1 && arg.length != 1 ) { // добавление сдвига вправо для последней карточки, если их больше 1
+            
+            if ( i === l - 1 && l !== 1 ) { // добавление сдвига вправо для последней карточки, если их больше 1
                 card.className += ' card-first';
             }
+            
             cardsSafer.appendChild(card); // кэшируем для лучшего рендеринга
         }
 
         cardsHolder.appendChild( cardsSafer ); // вставляем кэш с элементами
-        console.log('Boom');
     };
 
     CardsApp.hoverCards = function () {
@@ -71,9 +85,7 @@
 
     CardsApp.historyApi = {
         add: function () {
-            if ( window.history ) { // если поддерживается
-                history.pushState(data, null); // сохраняем в метод state актуальный массив
-            }
+            history.pushState(data, null); // сохраняем в метод state актуальный массив
         },
         detectChanges: function() {
             window.addEventListener('popstate', function(e) { // ловим нажатия стрелок истории, передаем в аргумент данные перехода
@@ -82,10 +94,7 @@
             });
         }
     };
+    
+    CardsApp.init();
 
-    CardsApp.editCards();
-    CardsApp.refreshViewCards();
-    CardsApp.hoverCards();
-    CardsApp.historyApi.add();
-    CardsApp.historyApi.detectChanges();
 }(cards));
